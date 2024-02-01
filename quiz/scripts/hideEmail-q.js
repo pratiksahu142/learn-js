@@ -6,6 +6,22 @@ window.onload = function hideEmail() {
     const list = document.getElementById('emails')
     list.innerHTML = '';
     for (const email of emails) {
-        // complete the loop
+        if (isValidEmail(email)) {
+            const maskedEmail = maskEmail(email);
+            const listItem = document.createElement('li');
+            listItem.textContent = maskedEmail;
+            list.appendChild(listItem);
+        }
     }
+}
+
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+function maskEmail(email) {
+    const [username, domain] = email.split('@');
+    const maskedUsername = '*'.repeat(username.length);
+    return maskedUsername + '@' + domain;
 }

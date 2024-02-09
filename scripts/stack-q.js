@@ -10,11 +10,11 @@ class PStack {
   }
 
   push(p) {
-    // implement in child class
+    return this._persons.push(p)
   }
 
   pop() {
-    // implement in child class
+    return this._persons.pop().age
   }
 
 }
